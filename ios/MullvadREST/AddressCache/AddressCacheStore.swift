@@ -8,6 +8,8 @@
 
 import Foundation
 import Logging
+import MullvadLogging
+import MullvadTypes
 
 public extension AddressCache {
     struct CachedAddresses: Codable {

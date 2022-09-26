@@ -9,7 +9,7 @@
 import Foundation
 import Logging
 
-extension Logger {
+public extension Logger {
     func error<T: Error>(
         error: T,
         message: @autoclosure () -> String? = nil,

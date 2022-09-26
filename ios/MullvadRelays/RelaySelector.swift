@@ -9,40 +9,24 @@
 import Foundation
 import Logging
 import MullvadREST
+import MullvadTypes
 import Network
 
-struct RelaySelectorResult: Codable {
-    var endpoint: MullvadEndpoint
-    var relay: REST.ServerRelay
-    var location: Location
-}
-
 private struct RelayWithLocation {
-    var relay: REST.ServerRelay
-    var location: Location
+    public var relay: REST.ServerRelay
+    public var location: Location
 }
 
-extension RelaySelectorResult {
-    var packetTunnelRelay: PacketTunnelRelay {
-        return PacketTunnelRelay(
-            ipv4Relay: endpoint.ipv4Relay,
-            ipv6Relay: endpoint.ipv6Relay,
-            hostname: relay.hostname,
-            location: location
-        )
-    }
-}
-
-struct NoRelaysSatisfyingConstraintsError: LocalizedError {
-    var errorDescription: String? {
+public struct NoRelaysSatisfyingConstraintsError: LocalizedError {
+    public var errorDescription: String? {
         return "No relays satisfying constraints."
     }
 }
 
-enum RelaySelector {}
+public enum RelaySelector {}
 
 extension RelaySelector {
-    static func evaluate(
+    public static func evaluate(
         relays: REST.ServerRelaysResponse,
         constraints: RelayConstraints
     ) throws -> RelaySelectorResult {

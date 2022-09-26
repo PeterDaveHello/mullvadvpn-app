@@ -7,30 +7,29 @@
 //
 
 import Foundation
-import struct Network.IPv4Address
 import struct WireGuardKitTypes.IPAddressRange
 import class WireGuardKitTypes.PrivateKey
 import class WireGuardKitTypes.PublicKey
 
 /// A struct that holds the configuration passed via `NETunnelProviderProtocol`.
-struct TunnelSettingsV1: Codable, Equatable {
-    var relayConstraints = RelayConstraints()
-    var interface = InterfaceSettings()
+public struct TunnelSettingsV1: Codable, Equatable {
+    public var relayConstraints = RelayConstraints()
+    public var interface = InterfaceSettings()
 }
 
 /// A struct that holds a tun interface configuration.
-struct InterfaceSettings: Codable, Equatable {
-    var privateKey: PrivateKeyWithMetadata
-    var nextPrivateKey: PrivateKeyWithMetadata?
+public struct InterfaceSettings: Codable, Equatable {
+    public var privateKey: PrivateKeyWithMetadata
+    public var nextPrivateKey: PrivateKeyWithMetadata?
 
-    var addresses: [IPAddressRange]
-    var dnsSettings: DNSSettings
+    public var addresses: [IPAddressRange]
+    public var dnsSettings: DNSSettings
 
     private enum CodingKeys: String, CodingKey {
         case privateKey, nextPrivateKey, addresses, dnsSettings
     }
 
-    init(
+    public init(
         privateKey: PrivateKeyWithMetadata = PrivateKeyWithMetadata(),
         nextPrivateKey: PrivateKeyWithMetadata? = nil,
         addresses: [IPAddressRange] = [],
@@ -42,7 +41,7 @@ struct InterfaceSettings: Codable, Equatable {
         self.dnsSettings = dnsSettings
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         privateKey = try container.decode(PrivateKeyWithMetadata.self, forKey: .privateKey)
@@ -59,7 +58,7 @@ struct InterfaceSettings: Codable, Equatable {
             ?? DNSSettings()
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         try container.encode(privateKey, forKey: .privateKey)
@@ -70,30 +69,30 @@ struct InterfaceSettings: Codable, Equatable {
 }
 
 /// A struct holding a private WireGuard key with associated metadata
-struct PrivateKeyWithMetadata: Equatable, Codable {
+public struct PrivateKeyWithMetadata: Equatable, Codable {
     private enum CodingKeys: String, CodingKey {
         case privateKey = "privateKeyData", creationDate
     }
 
     /// When the key was created
-    let creationDate: Date
+    public let creationDate: Date
 
     /// Private key
-    let privateKey: PrivateKey
+    public let privateKey: PrivateKey
 
     /// Public key
-    var publicKey: PublicKey {
+    public var publicKey: PublicKey {
         return privateKey.publicKey
     }
 
     /// Initialize the new private key
-    init() {
+    public init() {
         privateKey = PrivateKey()
         creationDate = Date()
     }
 
     /// Initialize with the existing private key
-    init(privateKey: PrivateKey, createdAt: Date) {
+    public init(privateKey: PrivateKey, createdAt: Date) {
         self.privateKey = privateKey
         creationDate = createdAt
     }

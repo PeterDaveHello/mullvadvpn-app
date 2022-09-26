@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MullvadTypes
 import struct WireGuardKitTypes.IPAddressRange
 import class WireGuardKitTypes.PublicKey
 
@@ -336,6 +337,6 @@ public extension REST {
     }
 
     struct Port: Decodable {
-        let id: String
+        public let id: String
     }
 }

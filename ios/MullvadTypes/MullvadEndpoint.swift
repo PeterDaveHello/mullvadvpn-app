@@ -10,10 +10,10 @@ import Foundation
 import Network
 
 /// Contains server data needed to connect to a single mullvad endpoint
-struct MullvadEndpoint: Equatable, Codable {
-    let ipv4Relay: IPv4Endpoint
-    let ipv6Relay: IPv6Endpoint?
-    let ipv4Gateway: IPv4Address
-    let ipv6Gateway: IPv6Address
-    let publicKey: Data
+public struct MullvadEndpoint: Equatable, Codable {
+    public let ipv4Relay: IPv4Endpoint
+    public let ipv6Relay: IPv6Endpoint?
+    public let ipv4Gateway: IPv4Address
+    public let ipv6Gateway: IPv6Address
+    public let publicKey: Data
 }

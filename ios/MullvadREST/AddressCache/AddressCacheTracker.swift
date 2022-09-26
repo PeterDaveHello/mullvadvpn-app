@@ -9,6 +9,8 @@
 #if canImport(UIKit)
 
 import Logging
+import MullvadLogging
+import MullvadTypes
 import Operations
 
 public extension AddressCache {

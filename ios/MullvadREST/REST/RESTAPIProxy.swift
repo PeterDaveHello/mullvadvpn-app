@@ -7,9 +7,8 @@
 //
 
 import Foundation
+import MullvadTypes
 import Network
-import struct WireGuardKitTypes.IPAddressRange
-import class WireGuardKitTypes.PublicKey
 
 public extension REST {
     final class APIProxy: Proxy<ProxyConfiguration> {
@@ -245,7 +244,7 @@ public extension REST {
             formatter.allowedUnits = [.day, .hour]
             formatter.unitsStyle = .full
 
-            return formatter.string(from: self.timeAdded)
+            return formatter.string(from: timeAdded)
         }
     }
 

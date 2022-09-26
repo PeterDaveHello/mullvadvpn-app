@@ -8,10 +8,10 @@
 
 import Foundation
 import Logging
+import MullvadRelays
 import Network
 import NetworkExtension
 import WireGuardKit
-import MullvadRelays
 
 class PacketTunnelProvider: NEPacketTunnelProvider, TunnelMonitorDelegate {
     /// Tunnel provider logger.

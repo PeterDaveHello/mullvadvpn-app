@@ -7,9 +7,12 @@
 //
 
 #if canImport(UIKit)
+
 import Foundation
 import Logging
+import MullvadLogging
 import MullvadREST
+import MullvadTypes
 import Operations
 
 public extension RelayCache {

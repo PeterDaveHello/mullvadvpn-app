@@ -12,26 +12,26 @@ import struct WireGuardKitTypes.IPAddressRange
 import class WireGuardKitTypes.PrivateKey
 import class WireGuardKitTypes.PublicKey
 
-struct TunnelSettingsV2: Codable, Equatable {
+public struct TunnelSettingsV2: Codable, Equatable {
     /// Relay constraints.
-    var relayConstraints = RelayConstraints()
+    public var relayConstraints = RelayConstraints()
 
     /// DNS settings.
-    var dnsSettings = DNSSettings()
+    public var dnsSettings = DNSSettings()
 }
 
-struct StoredAccountData: Codable, Equatable {
+public struct StoredAccountData: Codable, Equatable {
     /// Account identifier.
-    var identifier: String
+    public var identifier: String
 
     /// Account number.
-    var number: String
+    public var number: String
 
     /// Account expiry.
-    var expiry: Date
+    public var expiry: Date
 }
 
-enum DeviceState: Codable, Equatable {
+public enum DeviceState: Codable, Equatable {
     case loggedIn(StoredAccountData, StoredDeviceData)
     case loggedOut
     case revoked
@@ -41,7 +41,7 @@ enum DeviceState: Codable, Equatable {
         case _1 = "device"
     }
 
-    var isLoggedIn: Bool {
+    public var isLoggedIn: Bool {
         switch self {
         case .loggedIn:
             return true
@@ -50,7 +50,7 @@ enum DeviceState: Codable, Equatable {
         }
     }
 
-    var accountData: StoredAccountData? {
+    public var accountData: StoredAccountData? {
         switch self {
         case let .loggedIn(accountData, _):
             return accountData
@@ -59,7 +59,7 @@ enum DeviceState: Codable, Equatable {
         }
     }
 
-    var deviceData: StoredDeviceData? {
+    public var deviceData: StoredDeviceData? {
         switch self {
         case let .loggedIn(_, deviceData):
             return deviceData
@@ -69,33 +69,33 @@ enum DeviceState: Codable, Equatable {
     }
 }
 
-struct StoredDeviceData: Codable, Equatable {
+public struct StoredDeviceData: Codable, Equatable {
     /// Device creation date.
-    var creationDate: Date
+    public var creationDate: Date
 
     /// Device identifier.
-    var identifier: String
+    public var identifier: String
 
     /// Device name.
-    var name: String
+    public var name: String
 
     /// Whether relay hijacks DNS from this device.
-    var hijackDNS: Bool
+    public var hijackDNS: Bool
 
     /// IPv4 address assigned to device.
-    var ipv4Address: IPAddressRange
+    public var ipv4Address: IPAddressRange
 
     /// IPv6 address assignged to device.
-    var ipv6Address: IPAddressRange
+    public var ipv6Address: IPAddressRange
 
     /// WireGuard key data.
-    var wgKeyData: StoredWgKeyData
+    public var wgKeyData: StoredWgKeyData
 }
 
-struct StoredWgKeyData: Codable, Equatable {
+public struct StoredWgKeyData: Codable, Equatable {
     /// Private key creation date.
-    var creationDate: Date
+    public var creationDate: Date
 
     /// Private key.
-    var privateKey: PrivateKey
+    public var privateKey: PrivateKey
 }

@@ -8,6 +8,8 @@
 
 import Foundation
 import Logging
+import MullvadLogging
+import MullvadTypes
 import Operations
 
 extension REST {

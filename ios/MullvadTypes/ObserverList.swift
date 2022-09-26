@@ -32,6 +32,8 @@ public final class ObserverList<T> {
     private let lock = NSLock()
     private var observers = [WeakBox<T>]()
 
+    public init() {}
+
     public func append(_ observer: T) {
         lock.lock()
 

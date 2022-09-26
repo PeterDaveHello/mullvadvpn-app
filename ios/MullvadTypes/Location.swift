@@ -9,15 +9,15 @@
 import struct CoreLocation.CLLocationCoordinate2D
 import Foundation
 
-struct Location: Codable, Equatable {
-    var country: String
-    var countryCode: String
-    var city: String
-    var cityCode: String
-    var latitude: Double
-    var longitude: Double
+public struct Location: Codable, Equatable {
+    public var country: String
+    public var countryCode: String
+    public var city: String
+    public var cityCode: String
+    public var latitude: Double
+    public var longitude: Double
 
-    var geoCoordinate: CLLocationCoordinate2D {
+    public var geoCoordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }

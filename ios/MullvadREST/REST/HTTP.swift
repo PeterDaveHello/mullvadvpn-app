@@ -10,10 +10,10 @@ import Foundation
 
 /// HTTP method
 public struct HTTPMethod: RawRepresentable {
-    static let get = HTTPMethod(rawValue: "GET")
-    static let post = HTTPMethod(rawValue: "POST")
-    static let delete = HTTPMethod(rawValue: "DELETE")
-    static let put = HTTPMethod(rawValue: "PUT")
+    public static let get = HTTPMethod(rawValue: "GET")
+    public static let post = HTTPMethod(rawValue: "POST")
+    public static let delete = HTTPMethod(rawValue: "DELETE")
+    public static let put = HTTPMethod(rawValue: "PUT")
 
     public let rawValue: String
     public init(rawValue: String) {
@@ -22,11 +22,11 @@ public struct HTTPMethod: RawRepresentable {
 }
 
 public struct HTTPStatus: RawRepresentable, Equatable {
-    static let notModified = HTTPStatus(rawValue: 304)
-    static let badRequest = HTTPStatus(rawValue: 400)
-    static let notFound = HTTPStatus(rawValue: 404)
+    public static let notModified = HTTPStatus(rawValue: 304)
+    public static let badRequest = HTTPStatus(rawValue: 400)
+    public static let notFound = HTTPStatus(rawValue: 404)
 
-    static func isSuccess(_ code: Int) -> Bool {
+    public static func isSuccess(_ code: Int) -> Bool {
         return (200 ..< 300).contains(code)
     }
 
@@ -35,16 +35,16 @@ public struct HTTPStatus: RawRepresentable, Equatable {
         self.rawValue = rawValue
     }
 
-    var isSuccess: Bool {
+    public var isSuccess: Bool {
         return Self.isSuccess(rawValue)
     }
 }
 
 /// HTTP headers
-enum HTTPHeader {
-    static let host = "Host"
-    static let authorization = "Authorization"
-    static let contentType = "Content-Type"
-    static let etag = "ETag"
-    static let ifNoneMatch = "If-None-Match"
+public enum HTTPHeader {
+    public static let host = "Host"
+    public static let authorization = "Authorization"
+    public static let contentType = "Content-Type"
+    public static let etag = "ETag"
+    public static let ifNoneMatch = "If-None-Match"
 }
