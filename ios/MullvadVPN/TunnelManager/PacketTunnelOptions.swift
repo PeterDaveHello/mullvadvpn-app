@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MullvadRelays
 
 struct PacketTunnelOptions {
     /// Keys for options dictionary

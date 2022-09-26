@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MullvadREST
 
 extension AppStorePaymentManager {
     /// An error type emitted by `AppStorePaymentManager`.

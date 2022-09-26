@@ -13,6 +13,7 @@ import Operations
 import StoreKit
 import UIKit
 import UserNotifications
+import MullvadRelays
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

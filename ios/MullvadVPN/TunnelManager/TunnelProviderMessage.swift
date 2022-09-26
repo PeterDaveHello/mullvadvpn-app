@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MullvadRelays
 
 /// Enum describing supported app messages handled by packet tunnel provider.
 enum TunnelProviderMessage: Codable, CustomStringConvertible {

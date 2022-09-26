@@ -8,6 +8,7 @@
 
 import Foundation
 import Logging
+import MullvadREST
 import Operations
 import class WireGuardKitTypes.PrivateKey
 

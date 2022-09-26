@@ -9,6 +9,7 @@
 #if canImport(UIKit)
 import Foundation
 import Logging
+import MullvadREST
 import Operations
 
 public extension RelayCache {
@@ -80,19 +81,19 @@ public extension RelayCache {
         private var cachedRelays: CachedRelays?
 
         /// A shared instance of `RelayCache`
-        public static let shared: RelayCache.Tracker = {
-            let cacheFileURL = RelayCache.IO
-                .defaultCacheFileURL(
-                    forSecurityApplicationGroupIdentifier: ApplicationConfiguration
-                        .securityGroupIdentifier
-                )!
-            let prebundledRelaysFileURL = RelayCache.IO.preBundledRelaysFileURL!
+        /* public static let shared: RelayCache.Tracker = {
+             let cacheFileURL = RelayCache.IO
+                 .defaultCacheFileURL(
+                     forSecurityApplicationGroupIdentifier: ApplicationConfiguration
+                         .securityGroupIdentifier
+                 )!
+             let prebundledRelaysFileURL = RelayCache.IO.preBundledRelaysFileURL!
 
-            return Tracker(
-                cacheFileURL: cacheFileURL,
-                prebundledRelaysFileURL: prebundledRelaysFileURL
-            )
-        }()
+             return Tracker(
+                 cacheFileURL: cacheFileURL,
+                 prebundledRelaysFileURL: prebundledRelaysFileURL
+             )
+         }() */
 
         private init(cacheFileURL: URL, prebundledRelaysFileURL: URL) {
             self.cacheFileURL = cacheFileURL

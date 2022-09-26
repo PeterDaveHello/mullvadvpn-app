@@ -8,6 +8,7 @@
 
 import Foundation
 import Logging
+import MullvadREST
 import Network
 
 struct RelaySelectorResult: Codable {

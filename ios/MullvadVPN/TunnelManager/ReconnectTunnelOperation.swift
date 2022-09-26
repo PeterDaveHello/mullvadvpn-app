@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MullvadREST
 import Operations
 
 class ReconnectTunnelOperation: ResultOperation<Void, Error> {
