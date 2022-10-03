@@ -26,17 +26,38 @@ extension REST.Error: DisplayChainedError {
                 ),
                 urlError.localizedDescription
             )
+
         case let .unhandledResponse(statusCode, serverResponse):
-            return String(
-                format: NSLocalizedString(
-                    "SERVER_ERROR",
+            switch serverResponse?.code {
+            case REST.ServerResponseCode.maxDevicesReached:
+                return NSLocalizedString(
+                    "MAX_DEVICES_ERROR",
                     tableName: "REST",
-                    value: "Unexpected server response: %1$@ (HTTP status: %2$d)",
+                    value: "This account already has the maximum number of devices.",
                     comment: ""
-                ),
-                serverResponse?.code.rawValue ?? "(no code)",
-                statusCode
-            )
+                )
+
+            case REST.ServerResponseCode.invalidAccount:
+                return NSLocalizedString(
+                    "INVALID_ACCOUNT_NUMBER_ERROR",
+                    tableName: "REST",
+                    value: "Invalid account number.",
+                    comment: ""
+                )
+
+            default:
+                return String(
+                    format: NSLocalizedString(
+                        "SERVER_ERROR",
+                        tableName: "REST",
+                        value: "Unexpected server response: %1$@ (HTTP status: %2$d)",
+                        comment: ""
+                    ),
+                    serverResponse?.code.rawValue ?? "(no code)",
+                    statusCode
+                )
+            }
+
         case .createURLRequest:
             return NSLocalizedString(
                 "SERVER_REQUEST_ENCODING_ERROR",
@@ -44,6 +65,7 @@ extension REST.Error: DisplayChainedError {
                 value: "Failure to create URL request",
                 comment: ""
             )
+
         case .decodeResponse:
             return NSLocalizedString(
                 "SERVER_SUCCESS_RESPONSE_DECODING_ERROR",
@@ -65,6 +87,7 @@ extension SKError: LocalizedError {
                 value: "Unknown error.",
                 comment: ""
             )
+
         case .clientInvalid:
             return NSLocalizedString(
                 "CLIENT_INVALID",
@@ -72,6 +95,7 @@ extension SKError: LocalizedError {
                 value: "Client is not allowed to issue the request.",
                 comment: ""
             )
+
         case .paymentCancelled:
             return NSLocalizedString(
                 "PAYMENT_CANCELLED",
@@ -79,6 +103,7 @@ extension SKError: LocalizedError {
                 value: "User cancelled the request.",
                 comment: ""
             )
+
         case .paymentInvalid:
             return NSLocalizedString(
                 "PAYMENT_INVALID",
@@ -86,6 +111,7 @@ extension SKError: LocalizedError {
                 value: "Invalid purchase identifier.",
                 comment: ""
             )
+
         case .paymentNotAllowed:
             return NSLocalizedString(
                 "PAYMENT_NOT_ALLOWED",
@@ -93,6 +119,7 @@ extension SKError: LocalizedError {
                 value: "This device is not allowed to make the payment.",
                 comment: ""
             )
+
         default:
             return localizedDescription
         }
