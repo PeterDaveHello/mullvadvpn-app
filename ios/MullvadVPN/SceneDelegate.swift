@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, RootContainerViewContro
     ConnectViewControllerDelegate, NotificationManagerDelegate,
     SelectLocationViewControllerDelegate,
     RevokedDeviceViewControllerDelegate, UIAdaptivePresentationControllerDelegate, TunnelObserver,
-    RelayCacheObserver, UISplitViewControllerDelegate
+    RelayCacheObserver, UISplitViewControllerDelegate, TermsOfServiceViewControllerDelegate
 {
     private let logger = Logger(label: "SceneDelegate")
 
@@ -343,15 +343,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, RootContainerViewContro
         completion: @escaping (UIViewController) -> Void
     ) -> TermsOfServiceViewController {
         let controller = TermsOfServiceViewController()
+        controller.delegate = self
 
         if UIDevice.current.userInterfaceIdiom == .pad {
             controller.modalPresentationStyle = .formSheet
             controller.isModalInPresentation = true
-        }
-
-        controller.completionHandler = { controller in
-            TermsOfService.setAgreed()
-            completion(controller)
         }
 
         return controller
@@ -509,6 +505,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, RootContainerViewContro
         }
     }
 
+    // MARK: - TermsOfServiceViewControllerDelegate
+
+    func termsOfServiceViewControllerDidFinish(_ controller: TermsOfServiceViewController) {
+        TermsOfService.setAgreed()
+    }
+
     // MARK: - LoginViewControllerDelegate
 
     func loginViewController(
@@ -521,7 +523,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, RootContainerViewContro
         TunnelManager.shared.setAccount(action: action.setAccountAction) { operationCompletion in
             switch operationCompletion {
             case .success:
-                // RootContainer's settings button will be re-enabled in `loginViewControllerDidFinishLogin`
+                // RootContainer's settings button will be re-enabled in
+                // `loginViewControllerDidFinishLogin`
                 completion(operationCompletion)
 
             case let .failure(error):
